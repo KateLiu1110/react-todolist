@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoList from "./components/TodoList";
+import AddTodoForm from "./components/AddTodoForm";
 
 const initialTodos: Array<Todo> = [
   { text: "Walk the dog", complete: true },
@@ -22,9 +23,14 @@ function List() {
     setTodos(newTodos)
   }
 
+  const addTodo:AddTodo =(newTodo)=>{
+    setTodos([...todos,{text:newTodo,complete:false}])
+  }
+
   return (
     <>
         <TodoList todos={todos} toggleTodo={toggleTodo}/>
+        <AddTodoForm addTodo={addTodo}/>
     </>
   );
 }
