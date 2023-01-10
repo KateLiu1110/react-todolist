@@ -1,12 +1,12 @@
 import React from "react";
 import Home from "../src/js-toDoList/index";
-import ToolItem from "./js-Antd/components/ToolItem";
+import Index from "./js-Antd/containers";
 
 function App() {
   return (
     <>
-      <Home />
-      <ToolItem/>
+      {/* <Home /> */}
+      <Index/>
     </>
   );
 }

@@ -26,7 +26,7 @@ const ToolItem = () => {
             />
             <Button type="primary" onClick={toggle}>
               Edit
-            </Button>{" "}
+            </Button>
             <Popconfirm
                 title="請問要刪除嗎?"
                 onConfirm={confirm}
