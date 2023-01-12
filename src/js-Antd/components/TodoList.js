@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { List } from "antd";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import ToolItem from "./ToolItem";
 
 const TodoList = () => {
@@ -26,17 +27,20 @@ const TodoList = () => {
     loadMoreData();
   }, []);
   return (
-    <List
-      dataSource={data}
-      locale={{
-        emptyText: "There's nothing to do",
-      }}
-      renderItem={(item) => <ToolItem />}
-      pagination={{
-        position:'bottom',
-        pageSize: 10
-      }}
-    />
+    <InfiniteScroll>
+        <List
+        dataSource={data}
+        locale={{
+            emptyText: "There's nothing to do",
+        }}
+        renderItem={(item) => <ToolItem />}
+        pagination={{
+            position:'bottom',
+            pageSize: 10
+        }}
+        />
+    </InfiniteScroll>
+
   );
 };
 
