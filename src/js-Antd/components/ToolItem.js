@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { List, Switch, Button, Popconfirm } from "antd";
+import { List, Switch, Button, Popconfirm, Avatar } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 
-const ToolItem = () => {
+const ToolItem = ({ listData }) => {
   const [disabled, setDisabled] = useState(true);
   const toggle = () => {
     setDisabled(!disabled);
   };
 
-  const confirm =()=>{
-    this.$message.info('Clicked on Yes.');
-  }
-
+  const confirm = () => {
+    this.$message.info("Clicked on Yes.");
+  };
+  const { email,picture,name } = listData;
   return (
     <>
       <List.Item
+        key={email}
         className="list-item"
         actions={[
           <>
@@ -28,16 +29,22 @@ const ToolItem = () => {
               Edit
             </Button>
             <Popconfirm
-                title="請問要刪除嗎?"
-                onConfirm={confirm}
-                okText="Yes"
-                cancelText="No"
+              title="請問要刪除嗎?"
+              onConfirm={confirm}
+              okText="Yes"
+              cancelText="No"
             >
-            <DeleteOutlined twoToneColor="#eb2f96" />
+              <DeleteOutlined twoToneColor="#eb2f96" />
             </Popconfirm>
           </>,
         ]}
-      ></List.Item>
+      >
+        <List.Item.Meta
+          avatar={<Avatar src={picture.large}/>}
+          title={<a href="#">{name.last}</a>}
+          description={email}
+        />
+      </List.Item>
     </>
   );
 };

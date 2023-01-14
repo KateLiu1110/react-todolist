@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../src/js-toDoList/index";
+// import Home from "../src/js-toDoList/index";
 import Index from "./js-Antd/containers";
 
 function App() {

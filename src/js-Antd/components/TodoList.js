@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { List } from "antd";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { List, Skeleton } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 import ToolItem from "./ToolItem";
 
 const TodoList = () => {
@@ -24,23 +24,46 @@ const TodoList = () => {
       });
   };
   useEffect(() => {
-    loadMoreData();
+    // loadMoreData()
   }, []);
   return (
-    <InfiniteScroll>
+    <div
+      id="scrollableDiv"
+      style={{
+        height: 800,
+        overflow: "auto",
+        padding: "0 16px",
+      }}
+    >
+      <InfiniteScroll
+        dataLength={data.length}
+        next={loadMoreData}
+        hasMore={true}
+        loader={
+          <Skeleton
+            avatar
+            active
+            paragraph={{
+              row: 1,
+            }}
+          />
+        }
+        endMessage={<p>已載完資料....</p>}
+        scrollableTarget="scrollableDiv" // 指定滾動的父容器
+      >
         <List
-        dataSource={data}
-        locale={{
+          dataSource={data}
+          locale={{
             emptyText: "There's nothing to do",
-        }}
-        renderItem={(item) => <ToolItem />}
-        pagination={{
-            position:'bottom',
-            pageSize: 10
-        }}
+          }}
+          renderItem={(item) => <ToolItem listData={item} />}
+          pagination={{
+            position: "bottom",
+            pageSize: 10,
+          }}
         />
-    </InfiniteScroll>
-
+      </InfiniteScroll>
+    </div>
   );
 };
 
