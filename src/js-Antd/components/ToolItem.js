@@ -11,41 +11,34 @@ const ToolItem = ({ listData }) => {
   const confirm = () => {
     this.$message.info("Clicked on Yes.");
   };
-  const { email,picture,name } = listData;
+  const { email, picture, name } = listData;
   return (
-    <>
-      <List.Item
-        key={email}
-        className="list-item"
-        actions={[
-          <>
-            <Switch
-              disabled={disabled}
-              defaultChecked
-              checkedChildren="編輯中"
-              unCheckedChildren="關閉"
-            />
-            <Button type="primary" onClick={toggle}>
-              Edit
-            </Button>
-            <Popconfirm
-              title="請問要刪除嗎?"
-              onConfirm={confirm}
-              okText="Yes"
-              cancelText="No"
-            >
-              <DeleteOutlined twoToneColor="#eb2f96" />
-            </Popconfirm>
-          </>,
-        ]}
-      >
-        <List.Item.Meta
-          avatar={<Avatar src={picture.large}/>}
-          title={<a href="www">{name.last}</a>}
-          description={email}
+    <List.Item key={email}>
+      <List.Item.Meta
+        avatar={<Avatar src={picture.large} />}
+        title={<a href="https://ant.design">{name.last}</a>}
+        description={email}
+      />
+      <>
+        <Switch
+          disabled={disabled}
+          defaultChecked
+          checkedChildren="編輯中"
+          unCheckedChildren="關閉"
         />
-      </List.Item>
-    </>
+        <Button type="primary" onClick={toggle}>
+          Edit
+        </Button>
+        <Popconfirm
+          title="請問要刪除嗎?"
+          onConfirm={confirm}
+          okText="Yes"
+          cancelText="No"
+        >
+          <DeleteOutlined twoToneColor="#eb2f96" />
+        </Popconfirm>
+      </>
+    </List.Item>
   );
 };
 
