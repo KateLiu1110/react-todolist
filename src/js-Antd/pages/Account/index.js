@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Row, Col, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
-import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
-import TodoList from "../components/TodoList/TodoList";
+// import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
+import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
+import TodoList from "./components/TodoList/TodoList";
 
 const Index = () => {
   return (
