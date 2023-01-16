@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Row, Col, Button, Input } from 'antd';
-import { PlusCircleFilled } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 
 const AddTodoForm = ({ onFormSubmit }) => {
   const [form] = Form.useForm();
@@ -26,13 +26,13 @@ const AddTodoForm = ({ onFormSubmit }) => {
             name={'name'}
             rules={[{ required: true, message: 'This field is required' }]}
           >
-            <Input placeholder="What needs to be done?" />
+            <Input placeholder="請輸入會員 Email ...." />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={4}>
           <Button type="primary" htmlType="submit" block>
-            <PlusCircleFilled />
-            Add todo
+          <SearchOutlined />
+            搜尋
           </Button>
         </Col>
       </Row>

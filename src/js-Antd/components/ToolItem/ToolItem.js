@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { List, Switch, Button, Popconfirm, Avatar } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import * as Style from "./style";
 
 const ToolItem = ({ listData }) => {
   const [disabled, setDisabled] = useState(true);
@@ -19,7 +20,7 @@ const ToolItem = ({ listData }) => {
         title={<a href="https://ant.design">{name.last}</a>}
         description={email}
       />
-      <>
+      <Style.EditItem>
         <Switch
           disabled={disabled}
           defaultChecked
@@ -37,7 +38,7 @@ const ToolItem = ({ listData }) => {
         >
           <DeleteOutlined twoToneColor="#eb2f96" />
         </Popconfirm>
-      </>
+      </Style.EditItem>
     </List.Item>
   );
 };

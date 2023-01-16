@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
-import AddTodoForm from "../components/AddTodoForm";
-import TodoList from "../components/TodoList";
+import { Card, Row, Col, Button } from "antd";
+import { PlusCircleFilled } from "@ant-design/icons";
+import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
+import TodoList from "../components/TodoList/TodoList";
 
 const Index = () => {
   return (
@@ -14,7 +15,7 @@ const Index = () => {
           lg={{ span: 20 }}
           xl={{ span: 18 }}
         >
-          <Card title="新建會員資料" bordered={false}>
+          <Card title="戶外俱樂部" bordered={false}>
             <AddTodoForm />
           </Card>
         </Col>
@@ -29,6 +30,12 @@ const Index = () => {
         >
           <Card
             title="會員清單"
+            extra={
+              <Button type="primary" htmlType="submit" block>
+                <PlusCircleFilled />
+                新增會員
+              </Button>
+            }
             bordered={false}
           >
             <TodoList />

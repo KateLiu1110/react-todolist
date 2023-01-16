@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { List, Skeleton, Divider  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ToolItem from "./ToolItem";
+import ToolItem from "../ToolItem/ToolItem";
 
 const TodoList = () => {
   const [loading, setLoading] = useState(false);
