@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { List, Skeleton, Divider  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ToolItem from "../ToolItem/ToolItem";
+import mockData from "./mock";
 
 const TodoList = () => {
   const [loading, setLoading] = useState(false);
@@ -11,17 +12,19 @@ const TodoList = () => {
       return;
     }
     setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    setData([...data, ...mockData.results]);
+    setLoading(false);
+    // fetch(
+    //   "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
+    // )
+    //   .then((res) => res.json())
+    //   .then((body) => {
+    //     setData([...data, ...body.results]);
+    //     setLoading(false);
+    //   })
+    //   .catch(() => {
+    //     setLoading(false);
+    //   });
   };
   useEffect(() => {
     loadMoreData();
