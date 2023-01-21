@@ -1,34 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { List, Skeleton, Divider  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ToolItem from "../ToolItem/ToolItem";
-import mockData from "./mock";
 
-const TodoList = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    setData([...data, ...mockData.results]);
-    setLoading(false);
-    // fetch(
-    //   "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    // )
-    //   .then((res) => res.json())
-    //   .then((body) => {
-    //     setData([...data, ...body.results]);
-    //     setLoading(false);
-    //   })
-    //   .catch(() => {
-    //     setLoading(false);
-    //   });
-  };
-  useEffect(() => {
-    loadMoreData();
-  }, []);
+const TodoList = ({listData, loadMoreData}) => {
   return (
     <div
       id="scrollableDiv"
@@ -39,9 +14,9 @@ const TodoList = () => {
       }}
     >
       <InfiniteScroll
-        dataLength={data.length}
+        dataLength={listData.length}
         next={loadMoreData}
-        hasMore={data.length < 50}
+        hasMore={listData.length < 50}
         loader={
           <Skeleton
             avatar
@@ -55,12 +30,8 @@ const TodoList = () => {
         scrollableTarget="scrollableDiv" // 指定滾動的父容器
       >
         <List
-          dataSource={data}
+          dataSource={listData}
           renderItem={(item) => <ToolItem listData={item} />}
-          // pagination={{
-          //   position: "bottom",
-          //   pageSize: 10,
-          // }}
         />
       </InfiniteScroll>
     </div>

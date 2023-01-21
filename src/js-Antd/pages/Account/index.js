@@ -1,11 +1,38 @@
-import React from "react";
-import { Card, Row, Col, Button } from "antd";
+import React, { useState, useEffect } from "react";
+import { Card, Row, Col, Button, Modal } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
-// import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
 import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
 import TodoList from "./components/TodoList/TodoList";
+import EditModal from "./components/EditModal/EditModal";
+import mockData from "../Account/components/TodoList/mock.json";
 
 const Index = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data,setData]=useState([]);
+  const [loading, setLoading] = useState(false);
+  const moreDataFn = () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    setData([...data, ...mockData.results]);
+    setLoading(false);
+  };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    moreDataFn();
+  }, []);
+  
   return (
     <>
       <Row justify="center" align="middle">
@@ -32,17 +59,25 @@ const Index = () => {
           <Card
             title="會員清單"
             extra={
-              <Button type="primary" htmlType="submit" block>
+              <Button type="primary" onClick={showModal} block>
                 <PlusCircleFilled />
                 新增會員
               </Button>
             }
             bordered={false}
           >
-            <TodoList />
+            <TodoList listData={data} loadMoreData={moreDataFn}/>
           </Card>
         </Col>
       </Row>
+      <Modal
+        title="會員資訊"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <EditModal openModal={isModalOpen} add={setData} />
+      </Modal>
     </>
   );
 };
