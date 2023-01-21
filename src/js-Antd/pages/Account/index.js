@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Button, Modal } from "antd";
+import { Card, Row, Col, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
 import TodoList from "./components/TodoList/TodoList";
@@ -22,12 +22,7 @@ const Index = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+
 
   useEffect(() => {
     moreDataFn();
@@ -70,14 +65,7 @@ const Index = () => {
           </Card>
         </Col>
       </Row>
-      <Modal
-        title="會員資訊"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <EditModal openModal={isModalOpen} add={setData} />
-      </Modal>
+        <EditModal openModal={isModalOpen} closeModal={setIsModalOpen} add={setData} />
     </>
   );
 };
