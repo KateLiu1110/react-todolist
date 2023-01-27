@@ -3,7 +3,7 @@ import { List, Skeleton, Divider  } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ToolItem from "../ToolItem/ToolItem";
 
-const TodoList = ({listData, loadMoreData}) => {
+const TodoList = ({listData, loadMoreData, deleteData}) => {
   return (
     <div
       id="scrollableDiv"
@@ -31,7 +31,7 @@ const TodoList = ({listData, loadMoreData}) => {
       >
         <List
           dataSource={listData}
-          renderItem={(item) => <ToolItem listData={item} />}
+          renderItem={(item) => <ToolItem listData={item}  deleteDataInfo={deleteData} />}
         />
       </InfiniteScroll>
     </div>

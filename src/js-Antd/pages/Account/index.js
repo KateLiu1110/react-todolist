@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
-import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
+// import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
 import TodoList from "./components/TodoList/TodoList";
 import EditModal from "./components/EditModal/EditModal";
-import mockData from "../Account/components/TodoList/mock.json";
+// import mockData from "../Account/components/TodoList/mock.json";
+import mockData from "./components/TodoList/mock";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +40,7 @@ const Index = () => {
           xl={{ span: 18 }}
         >
           <Card title="戶外俱樂部" bordered={false}>
-            <AddTodoForm />
+            {/* <AddTodoForm /> */}
           </Card>
         </Col>
       </Row>
@@ -61,7 +62,7 @@ const Index = () => {
             }
             bordered={false}
           >
-            <TodoList listData={data} loadMoreData={moreDataFn}/>
+            <TodoList listData={data} loadMoreData={moreDataFn} deleteData={setData}/>
           </Card>
         </Col>
       </Row>
